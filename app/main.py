@@ -1,13 +1,12 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from utils import json_to_dict_list
-import os
-from typing import Optional
+from presidio_analyzer import AnalyzerEngine
 
 app = FastAPI()
-
-app.mount('/static', StaticFiles(directory='app/static'), 'static')
+analyzer = AnalyzerEngine()
 
 @app.get("/")
 def home_page():
-    return {"message": "Hi everyone"}
+    text_to_be_analyzed = "Hi, My name is Yaroslav and my email is yaroslav@example.com"
+    result = analyzer.analyze(text=text_to_be_analyzed, language="en")
+
+    return result
