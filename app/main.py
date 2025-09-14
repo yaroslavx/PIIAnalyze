@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from presidio_analyzer import AnalyzerEngine
+from presidio_anonymizer import AnonymizerEngine
 
 app = FastAPI()
 analyzer = AnalyzerEngine()
+anonymizer = AnonymizerEngine()
 
 @app.get("/")
 def home_page():
